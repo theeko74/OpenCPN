@@ -122,6 +122,7 @@ extern wxString         g_UserPresLibData;
 
 extern AIS_Decoder      *g_pAIS;
 extern wxString         *pInit_Chart_Dir;
+extern wxString         gWorldMapLocation;
 extern WayPointman      *pWayPointMan;
 extern Routeman         *g_pRouteMan;
 extern RouteProp        *pRoutePropDialog;
@@ -958,6 +959,7 @@ int MyConfig::LoadMyConfig()
 
     Read( _T ( "GPXIODir" ), &m_gpx_path );           // Get the Directory name
     Read( _T ( "TCDataDir" ), &g_TCData_Dir );           // Get the Directory name
+    Read( _T ( "BasemapDir"), &gWorldMapLocation );
 
     SetPath( _T ( "/Settings/GlobalState" ) );
     
@@ -2209,6 +2211,7 @@ void MyConfig::UpdateSettings()
     Write( _T ( "InitChartDir" ), *pInit_Chart_Dir );
     Write( _T ( "GPXIODir" ), m_gpx_path );
     Write( _T ( "TCDataDir" ), g_TCData_Dir );
+    Write( _T ( "BasemapDir" ), gWorldMapLocation );
 
     SetPath( _T ( "/Settings/NMEADataSource" ) );
     wxString connectionconfigs;
