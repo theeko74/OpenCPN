@@ -6810,10 +6810,17 @@ bool ChartCanvas::MouseEventProcessCanvas( wxMouseEvent& event )
     int wheel_dir = event.GetWheelRotation();
     
     if( wheel_dir ) {
-        int mouse_wheel_oneshot = abs(wheel_dir)*4;                  //msec
-        wheel_dir = wheel_dir > 0 ? 1 : -1; // normalize
+        int mouse_wheel_oneshot = abs(wheel_dir)*40; //msec
+        wheel_dir = wheel_dir > 0 ? 1 : -1;         // normalize
         
-        double factor = 2.0;
+        #ifdef __WXOSX__
+        // Correct bug in MacOSX when scrolling with mouse
+        // zoom is going to fast, and not controlable...
+        double factor = 1.028;
+        #else
+        double factor = 2;
+        #endif
+        
         if(wheel_dir < 0)
             factor = 1/factor;
         
@@ -6834,7 +6841,6 @@ bool ChartCanvas::MouseEventProcessCanvas( wxMouseEvent& event )
         }
         
         m_last_wheel_dir = wheel_dir;
-        
         
         ZoomCanvas( factor, true, false );
         
