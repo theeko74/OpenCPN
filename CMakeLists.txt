@@ -1301,6 +1301,12 @@ SET(SRCS
                 src/iENCToolbar.cpp
                 src/mbtiles.cpp
     )
+IF(APPLE)
+    SET(SRCS ${SRCS}
+        src/DarkMode.mm
+        src/DarkMode.h
+    )
+ENDIF(APPLE)
 
 IF(NOT WIN32 AND NOT APPLE AND NOT QT_ANDROID)
   SET(HDRS ${HDRS} include/crashprint.h )
@@ -2220,6 +2226,7 @@ GETTEXT_BUILD_MO(po/opencpn_tr_TR.po tr_TR)
 GETTEXT_BUILD_MO(po/opencpn_fi_FI.po fi_FI)
 GETTEXT_BUILD_MO(po/opencpn_el_GR.po el_GR)
 GETTEXT_BUILD_MO(po/opencpn_zh_TW.po zh_TW)
+GETTEXT_BUILD_MO(po/opencpn_zh_CN.po zh_TW)
 GETTEXT_BUILD_MO(po/opencpn_hu_HU.po hu_HU)
 GETTEXT_BUILD_MO(po/opencpn_gl_ES.po gl_ES)
 GETTEXT_BUILD_MO(po/opencpn_ca_ES.po ca_ES)
